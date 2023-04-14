@@ -84,3 +84,26 @@ class Composite(Node):
         for child in self.children:
             child.reset()
 
+def Decorator(Node):
+    """
+    The Decorator class is a subclass of Node that represents a decorator node in a 
+    behavior tree. Decorator nodes modify the behavior of their child nodes in some way,
+    without changing the outcome of the behavior tree.
+
+    The Decorator class is a base class for several types of decorator nodes in a behavior 
+    tree, such as the Inverter, Succeeder, and Repeater nodes. These nodes modify the 
+    behavior of their child nodes in different ways, such as inverting their outcome, 
+    always succeeding or failing, or repeating their behavior multiple times.
+
+    By providing a common interface for decorator nodes, the Decorator class allows us to 
+    easily create new decorator nodes and reuse existing ones, making it easier to construct 
+    complex behavior trees.
+    """
+    def __init__(self, child):
+        super().__init__()
+        self.children.append(child)
+        child.parent = self
+
+    def reset(self):
+        super().reset()
+        self.children[0].reset()
