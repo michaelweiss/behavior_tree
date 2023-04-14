@@ -34,6 +34,9 @@ class Node:
         self.children = []
         self.status = None
 
+    def __repr__(self):
+        return self.__class__.__name__
+
     def tick(self):
         raise NotImplementedError
     
@@ -46,3 +49,38 @@ class Action(Node):
     tree, which are nodes that cannot have any child nodes.
     """
     pass
+
+class Composite(Node):
+    """
+    The Composite class is a subclass of Node that represents the composite nodes in a 
+    behavior tree, which are nodes that can have one or more child nodes.
+
+    Properties:
+    children: A list of the child nodes of the current node. This is an empty list if the 
+    node has no children.
+
+    Methods:
+    add_child(child): Adds a child node to the current node. The child node should be an 
+    instance of a subclass of Node.
+    remove_child(child): Removes a child node from the current node. The child node should 
+    be an instance of a subclass of Node.
+    reset(): Resets the state of the node to its initial state, including resetting the 
+    state of all child nodes.
+    """
+    def __init__(self):
+        super().__init__()
+        self.children = []
+
+    def add_child(self, child):
+        self.children.append(child)
+        child.parent = self
+
+    def remove_child(self, child):
+        self.children.remove(child)
+        child.parent = None
+
+    def reset(self):
+        super().reset()
+        for child in self.children:
+            child.reset()
+
