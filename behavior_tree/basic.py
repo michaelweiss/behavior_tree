@@ -104,8 +104,9 @@ def Decorator(Node):
     def __init__(self, child):
         super().__init__()
         self.children.append(child)
+        self.decorated = child
         child.parent = self
 
     def reset(self):
         super().reset()
-        self.children[0].reset()
+        self.decorated.reset()
