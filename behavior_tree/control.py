@@ -31,6 +31,7 @@ class Sequence(Composite):
         print("Sequence: {}".format(self.children))
         for self.current_child in self.children:
             status = self.current_child.tick()
+            print("Executing {}. Status: {}".format(self.current_child, status))
             if status != Status.SUCCESS:
                 return status
         return Status.SUCCESS

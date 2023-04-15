@@ -18,7 +18,7 @@ class Infobot:
 class ReadSentence(Action):
     def tick(self):
         print("Reading sentence")
-        sentence = input("Enter a sentence: ")
+        sentence = input("Enter a sentence: ").strip()
         self.blackboard.set("sentence", sentence)
         return Status.SUCCESS
     
@@ -26,6 +26,9 @@ class LowercaseSentence(Action):
     def tick(self):
         print("Lowercase sentence")
         sentence = self.blackboard.get("sentence")
+        if not sentence:
+            print("No sentence to lowercase")
+            return Status.FAILURE
         lowercased = sentence.lower()
         self.blackboard.set("sentence", lowercased)
         return Status.SUCCESS
@@ -34,6 +37,9 @@ class TokenizeSentence(Action):
     def tick(self):
         print("Tokenizing sentence")
         sentence = self.blackboard.get("sentence")
+        if not sentence:
+            print("No sentence to tokenize")
+            return Status.FAILURE
         tokens = sentence.split()
         self.blackboard.set("tokens", tokens)
         return Status.SUCCESS

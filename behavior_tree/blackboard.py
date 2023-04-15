@@ -13,6 +13,8 @@ class Blackboard:
         self.data = {}
 
     def get(self, key):
+        if key not in self.data:
+            return None
         return self.data[key]
 
     def set(self, key, value):
