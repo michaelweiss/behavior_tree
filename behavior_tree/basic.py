@@ -1,4 +1,5 @@
 from enum import Enum
+from .blackboard import Blackboard
 
 class Status(Enum):
     SUCCESS = 0
@@ -29,9 +30,10 @@ class Node:
     reset(): Resets the state of the node to its initial state. This method can be 
     implemented by subclasses of Node if they have any state that needs to be reset.
     """
-    def __init__(self):
+    def __init__(self, blackboard=None):
         self.parent = None
         self.children = []
+        self.blackboard = blackboard
         self.status = None
 
     def __repr__(self):
