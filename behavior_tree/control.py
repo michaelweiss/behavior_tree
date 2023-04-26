@@ -51,8 +51,10 @@ class Selector(Composite):
     implement more sophisticated behaviors.
 
     Properties:
-    children: A list of the child nodes of the current node. This is an empty list if the node has no children.
-    current_child: A reference to the current child node being executed. This is None if no child nodes are currently being executed.
+    children: A list of the child nodes of the current node. This is an empty list if the 
+    node has no children.
+    current_child: A reference to the current child node being executed. This is None if no 
+    child nodes are currently being executed.
    
     Methods:
     tick(): Executes a single tick of the behavior tree starting from the current node. The 
