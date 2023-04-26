@@ -1,6 +1,11 @@
 from behavior_tree.basic import Action, Status
 from behavior_tree.control import Sequence
 
+"""
+This is simple test of the behavior tree. The robot will go to the target, pick it up, 
+go to the base, and drop it. The robot will perform these actions in order.
+"""
+
 class Robot:
     def __init__(self):
         self.behavior = Sequence([
